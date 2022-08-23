@@ -1,10 +1,10 @@
 from past.builtins import raw_input
-
+#from flask import Flask, render_template, request
 import model
 from model import Person
 import view
 
-
+#app = Flask(__name__)
 def show_all():
     # gets list of all Person objects
     people_in_db = Person.get_all()
@@ -13,12 +13,8 @@ def show_all():
 
 
 def start():
+    show_all()
     view.start_view()
-    input = raw_input()
-    if input == 'y':
-        return show_all()
-    else:
-        return view.end_view()
 
 # Funciones para recoleccion de datos y acceso a los metodos de actualizar y eliminar en db.json
 def InputDataU():
@@ -40,18 +36,3 @@ def DeleteDataU():
 if __name__ == "__main__":
     # running controller function
     start()
-    val = True
-    while val:
-        view.Menu()
-        selector = raw_input()
-        if selector == 'A' or selector == 'a':
-            InputDataU()
-        elif selector == 'B' or selector == 'b':
-            DeleteDataU()
-
-        elif selector == 'C' or selector == 'c':
-            view.end_view()
-            val = False
-        else:
-            view.end_view()
-            val = False

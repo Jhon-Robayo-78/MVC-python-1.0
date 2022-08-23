@@ -1,0 +1,13 @@
+{% extends 'Base.html' %}
+{% block content %}
+<div class="container">
+    <div>
+        <button type="submit">insert</button>
+        <button type="submit">delete</button>
+        <button> update</button>
+    </div>
+    {% for i in value %}
+    <li> {{i}} </li>
+    {% endfor %}
+</div>
+{% endblock %}
