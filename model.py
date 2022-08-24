@@ -1,6 +1,5 @@
 import json
 
-
 class Person(object):
 
     def __init__(self, id, first_name=None, last_name=None):
@@ -23,36 +22,38 @@ class Person(object):
                 result.append(person)
         return result
 
-    def update(self, lastname):
+    def add_to_db(self):
+        with open('db.json') as json_file:
+            data = json.load(json_file)
+            data['employees'].append({'id': int(self.id), 'first_name': str(self.first_name), 'last_name': str(self.last_name)})
+            with open('db.json', 'w') as JSON_NEW:
+                json.dump(data, JSON_NEW, indent=0, ensure_ascii=False)
+
+
+
+
+    def update(self):
         with open('db.json') as json_file:
             data = json.load(json_file)
             for p in data['employees']:
-                if p['first_name'] == self and p['last_name'] == lastname:
-                    print(True, 'si actualizar')
-                    print('1 - nombre \n2 - apellido \n0 - terminar \nDigite la opcion:')
-                    val = input()
-                    if val == '1':
-                        print('digite nombre:')
-                        new_name = input()
-                        p['first_name'] = new_name
-                    elif val == '2':
-                        print('digite apellido:')
-                        new_lastname = input()
-                        p['last_name'] = new_lastname
+                if p['id'] == int(self.id):
+                    print(p['id'] is int(self.id)) # validacion de datos
+                    p['first_name'] = self.first_name
+                    p['last_name'] = self.last_name
             with open('db.json', 'w') as JSON_NEW:
-                json.dump(data, JSON_NEW, indent=4, ensure_ascii=False)
-        print(self, lastname)
-        print(data)
+                json.dump(data, JSON_NEW, indent=0, ensure_ascii=False)
+        print('\n', data) # vista db.json actualizada
+        print('\nUpdated User\n', 'ID:', self.id, 'name:', self.first_name, 'last name:', self.last_name)
 
-    def deleteUser(self, lastname):
+    def deleteUser(self):
+        #print(self.id, self.first_name, self.last_name)
         with open('db.json') as json_file:
             data = json.load(json_file)
             i = 0
             for p in data['employees']:
-                if p['first_name'] == self and p['last_name'] == lastname:
+                if p['id'] == int(self.id):
                     del data['employees'][i]
-                    print('!!!!!!ELIMINADO!!!!!!!')
                 i = i + 1
             print(data)
-            with open('db2.json', 'w') as JSON_NEW:
+            with open('db.json', 'w') as JSON_NEW:
                 json.dump(data, JSON_NEW, indent=4, ensure_ascii=False)
