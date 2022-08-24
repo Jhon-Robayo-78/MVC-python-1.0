@@ -1,4 +1,6 @@
 import json
+
+
 class Person(object):
 
     def __init__(self, id, first_name=None, last_name=None):
@@ -21,33 +23,33 @@ class Person(object):
                 result.append(person)
         return result
 
-    def update(name, lastname):
+    def update(self, lastname):
         with open('db.json') as json_file:
             data = json.load(json_file)
             for p in data['employees']:
-                if p['first_name'] == name and p['last_name'] == lastname:
+                if p['first_name'] == self and p['last_name'] == lastname:
                     print(True, 'si actualizar')
                     print('1 - nombre \n2 - apellido \n0 - terminar \nDigite la opcion:')
                     val = input()
                     if val == '1':
                         print('digite nombre:')
-                        New_name = input()
-                        p['first_name']=New_name
+                        new_name = input()
+                        p['first_name'] = new_name
                     elif val == '2':
                         print('digite apellido:')
-                        New_Lastname = input()
-                        p['last_name']=New_Lastname
-            with open('db.json','w') as JSON_NEW:
+                        new_lastname = input()
+                        p['last_name'] = new_lastname
+            with open('db.json', 'w') as JSON_NEW:
                 json.dump(data, JSON_NEW, indent=4, ensure_ascii=False)
-        print(name, lastname)
+        print(self, lastname)
         print(data)
 
-    def deleteUser(name, lastname):
+    def deleteUser(self, lastname):
         with open('db.json') as json_file:
             data = json.load(json_file)
             i = 0
             for p in data['employees']:
-                if p['first_name'] == name and p['last_name'] == lastname:
+                if p['first_name'] == self and p['last_name'] == lastname:
                     del data['employees'][i]
                     print('!!!!!!ELIMINADO!!!!!!!')
                 i = i + 1
