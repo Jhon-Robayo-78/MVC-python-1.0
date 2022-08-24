@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/MVC_PYTHON_01.iml" filepath="$PROJECT_DIR$/.idea/MVC_PYTHON_01.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/MVC-python-1.0.iml" filepath="$PROJECT_DIR$/.idea/MVC-python-1.0.iml" />
+>>>>>>> origin/main
     </modules>
   </component>
 </project>
